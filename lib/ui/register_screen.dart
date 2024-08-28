@@ -164,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 content: Text('Email is not valid'),
                               ),
                             );
-                          } else if (password.text.length < 6) {
+                          } else if (password.text.length <= 6) {
                             isSignedIn = false;
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -174,18 +174,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             );
                           } else {
                             isSignedIn = true;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MainScreen(
+                                  username: email.text,
+                                  password: password.text,
+                                  firstName: firstName.text,
+                                  lastName: lastName.text,
+                                ),
+                              ),
+                            );
                           }
                           if (email.text.isNotEmpty &&
                               firstName.text.isNotEmpty &&
                               lastName.text.isNotEmpty &&
                               password.text.isNotEmpty) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => MainScreen(
-                                username: email.text,
-                                password: password.text,
-                              ),),
-                            );
                           }
                         });
                       },
