@@ -174,7 +174,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             );
                           } else {
                             isSignedIn = true;
-                            Navigator.push(
+                            Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => MainScreen(
@@ -184,13 +184,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   lastName: lastName.text,
                                 ),
                               ),
+                              (route) => false,
                             );
                           }
                           if (email.text.isNotEmpty &&
                               firstName.text.isNotEmpty &&
                               lastName.text.isNotEmpty &&
-                              password.text.isNotEmpty) {
-                          }
+                              password.text.isNotEmpty) {}
                         });
                       },
                       style:
